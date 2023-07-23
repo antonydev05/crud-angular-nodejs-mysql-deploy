@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+const indexController_1 = require("../controllers/indexController");
 class IndexRoutes {
     constructor() {
         this.router = (0, express_1.Router)();
@@ -8,7 +9,7 @@ class IndexRoutes {
     }
     // ruta inicial devolverá mensaje hello
     config() {
-        this.router.get("/", (req, res) => res.send("Hello"));
+        this.router.get("/", indexController_1.indexController.index);
     }
 }
 // Ejecuta el Constructor

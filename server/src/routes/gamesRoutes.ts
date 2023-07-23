@@ -1,4 +1,5 @@
 import { Router } from "express";
+import gamesController from '../controllers/gamesController';
 
 class GamesRoutes {
   public router: Router = Router();
@@ -7,9 +8,13 @@ class GamesRoutes {
     this.config();
   }
 
-  // ruta inicial devolverá mensaje hello
+  // rutas crud
   config(): void {
-    this.router.get("/", (req, res) => res.send("games"));
+    this.router.get('/', gamesController.list); // listar
+    this.router.get('/:id', gamesController.getOne); //listar un juego por id
+    this.router.post('/', gamesController.create); // crear
+    this.router.delete('/:id', gamesController.delete); // borrar
+    this.router.put('/:id', gamesController.update); //actualizar
   }
 }
 
