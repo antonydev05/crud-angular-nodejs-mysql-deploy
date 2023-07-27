@@ -1,0 +1,36 @@
+<div class="col-md-4 offset-md-2">
+    <div class="card h-100">
+        <div class="card-body">
+            <form>
+                <div class="form-group  mb-2">
+                    <label class="form-label">Titulo del juego:</label>
+                    <input type="text" name="title" [(ngModel)]="game.title" placeholder="Ingrese nombre del juego" class="form-control" autofocus/>
+                </div>
+                <div class="form-group mb-2">
+                    <label class="form-label">Descripción:</label>
+                    <textarea name="description" [(ngModel)]="game.description" placeholder="Describa el juego" class="form-control"></textarea>
+                 </div>
+                <div class="text-li mb-3">
+                    <label class="form-label">Link de la imagen:</label>
+                    <input type="url" name="image" [(ngModel)]="game.image" placeholder="Ingrese el link" class="form-control text-li" />
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success btn-block mt-3" (click)="edit ? updateGame() : saveNewGame()">Registrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4">
+    <div class="card card-body text-center">
+        <div class="card-header text-white bg-dark">
+            <label>{{game.title == '' ? 'Titulo del Juego' : game.title}}</label>
+        </div>
+        <div class="card-img">
+            <img [src]="game.image == '' ? '/assets/noimage.png' : game.image" class="card-img-top " style="object-fit: cover;" height="250">
+        </div>
+        <p>{{game.description == '' ? 'Descripción del Juego' : game.description}}</p>
+        <p>{{game.created_at | date: 'yyyy-MM-dd'}}</p>
+    </div>
+</div>

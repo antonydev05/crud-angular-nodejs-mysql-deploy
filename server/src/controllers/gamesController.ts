@@ -4,7 +4,7 @@ import pool from "../database";
 
 class GamesController {
   // metodo para listar todos los juegos
-  public async list(req: Request, res: Response) {
+  public async list(req: Request, res: Response): Promise<any> {
     try {
       const games = await pool.query("SELECT * FROM games");
       console.log(games);
@@ -25,7 +25,7 @@ class GamesController {
   }
 
   // metodo para crear un juego
-  public async create(req: Request, res: Response) {
+  public async create(req: Request, res: Response): Promise<void> {
     try {
       const game = await pool.query("INSERT INTO games set ?", [req.body]);
       res.json({ message: "Game saved" });
@@ -45,7 +45,7 @@ class GamesController {
   }
 
   // metodo para actualizar
-  public async update(req: Request, res: Response) {
+  public async update(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
     await pool.query('UPDATE games set ? WHERE id = ?', [req.body, id]);
     res.json({ message: "The was updated "});
