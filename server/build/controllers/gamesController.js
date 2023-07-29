@@ -8,17 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const database_1 = __importDefault(require("../database"));
+const database_1 = require("../database");
 class GamesController {
     // metodo para listar todos los juegos
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const games = yield database_1.default.query("SELECT * FROM games");
+                const games = yield database_1.pool.query("SELECT * FROM games");
                 console.log(games);
                 res.json(games[0]);
             }
@@ -31,7 +28,7 @@ class GamesController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query("SELECT * FROM games WHERE id = ?", [id]);
+            const games = yield database_1.pool.query("SELECT * FROM games WHERE id = ?", [id]);
             if (games.length > 0) {
                 return res.json(games[0]);
                 res.status(404).json({ text: "the game doesn't exists" });
@@ -42,7 +39,7 @@ class GamesController {
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const game = yield database_1.default.query("INSERT INTO games set ?", [req.body]);
+                const game = yield database_1.pool.query("INSERT INTO games set ?", [req.body]);
                 res.json({ message: "Game saved" });
             }
             catch (error) {
@@ -57,7 +54,7 @@ class GamesController {
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM games WHERE id = ?', [id]);
+            yield database_1.pool.query('DELETE FROM games WHERE id = ?', [id]);
             res.json({ text: "The game was deleted" });
         });
     }
@@ -65,7 +62,7 @@ class GamesController {
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('UPDATE games set ? WHERE id = ?', [req.body, id]);
+            yield database_1.pool.query('UPDATE games set ? WHERE id = ?', [req.body, id]);
             res.json({ message: "The was updated " });
         });
     }

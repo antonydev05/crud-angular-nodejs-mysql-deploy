@@ -1,14 +1,10 @@
-import mysql from 'mysql2/promise';
-// Importamos los datos de conexion a la DB
-import keys from './keys';
+import { createPool } from "mysql2/promise";
+import { DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER } from "./keys";
 
-// la coneccion lo guardamos en una constante
-const pool = mysql.createPool(keys.database);
-
-const connect = () => {
-    const pool = mysql.createPool(keys.database);
-    pool.getConnection();
-    return pool;
-}
-
-export default pool;
+export const pool = createPool({
+  user: DB_USER,
+  password: DB_PASSWORD,
+  host: DB_HOST,
+  database: DB_NAME,
+  port: DB_PORT,
+});

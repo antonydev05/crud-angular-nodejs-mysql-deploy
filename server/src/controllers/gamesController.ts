@@ -1,6 +1,6 @@
 import { Request, Response, json } from "express";
 
-import pool from "../database";
+import {pool} from "../database";
 
 class GamesController {
   // metodo para listar todos los juegos

@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
+const keys_1 = require("./keys");
 const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const gamesRoutes_1 = __importDefault(require("./routes/gamesRoutes"));
 class Server {
@@ -16,7 +17,7 @@ class Server {
     }
     // si hay un port en el sistema lo tomará sino usará el port 3000
     config() {
-        this.app.set('port', process.env.PORT || 3000); // el puerto lo guarda en port
+        this.app.set('port', keys_1.PORT); // el puerto lo guarda en port
         this.app.use((0, morgan_1.default)('dev')); // nos informa las peticiones en consola
         this.app.use((0, cors_1.default)());
         this.app.use(express_1.default.json()); // el servidor ahora acepta formatos json

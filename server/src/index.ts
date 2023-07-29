@@ -1,6 +1,7 @@
 import express, { Application } from "express";
 import morgan from 'morgan';
 import cors from 'cors';
+import {PORT} from './keys'
 
 import indexRoutes from './routes/indexRoutes';
 import gamesRoutes from './routes/gamesRoutes';
@@ -16,7 +17,7 @@ class Server {
 
   // si hay un port en el sistema lo tomará sino usará el port 3000
   config(): void {
-    this.app.set('port', process.env.PORT || 3000); // el puerto lo guarda en port
+    this.app.set('port', PORT); // el puerto lo guarda en port
     this.app.use(morgan('dev')); // nos informa las peticiones en consola
     this.app.use(cors());
     this.app.use(express.json()); // el servidor ahora acepta formatos json
