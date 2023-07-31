@@ -1,10 +1,10 @@
 import { createPool } from "mysql2/promise";
-import { DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER } from "./keys";
+import { MYSQLHOST, MYSQLDATABASE, MYSQLPASSWORD, MYSQLPORT, MYSQLUSER } from "./keys";
 
 export const pool = createPool({
-  user: DB_USER,
-  password: DB_PASSWORD,
-  host: DB_HOST,
-  database: DB_NAME,
-  port: DB_PORT,
+  user: MYSQLUSER,
+  password: MYSQLPASSWORD,
+  host: MYSQLHOST,
+  database: MYSQLDATABASE,
+  port: MYSQLPORT,
 });
